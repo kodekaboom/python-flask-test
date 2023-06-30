@@ -17,6 +17,7 @@ async def execute_jokes_request(url, number_of_requests):
     """"Function to create a batch request based on the amount of request that we need and formatted with the necessary attributes"""
     responses = await asyncio.gather(*[send_async_request(url) for _ in range(number_of_requests)])
     formatted_responses = []
+    print("test")
     for response in responses:
         formatted_responses.append({"id": response["id"], "value": response["value"], "url": response["icon_url"]})
     return formatted_responses
@@ -24,7 +25,7 @@ async def execute_jokes_request(url, number_of_requests):
 
 @app.route("/get-jokes", methods=['GET'])
 async def get_jokes():
-    jokes_to_request = 25
+    jokes_to_request = 30
     retries = 0
     url = "https://api.chucknorris.io/jokes/random"
     unique_jokes = []
